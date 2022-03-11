@@ -24,7 +24,7 @@ struct ContentView: View {
 
 class SFoo: KFoo
 {
-    func decrement(i: BignumBigInteger) -> BignumBigInteger {
+    override func decrement(i: BignumBigInteger) -> BignumBigInteger {
         return i.dec()
     }
 }

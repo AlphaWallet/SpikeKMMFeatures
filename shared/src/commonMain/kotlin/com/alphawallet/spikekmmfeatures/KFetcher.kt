@@ -32,8 +32,8 @@ class KFetcher {
     }
 }
 
-interface KFoo {
-    fun decrement(i: BigInteger): BigInteger
+abstract class KFoo {
+    abstract fun decrement(i: BigInteger): BigInteger
 }
 
 data class KURLAndString (

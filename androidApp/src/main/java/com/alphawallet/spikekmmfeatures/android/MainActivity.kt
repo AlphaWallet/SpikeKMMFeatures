@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class AFoo : KFoo {
+class AFoo : KFoo() {
     override fun decrement(i: BigInteger): BigInteger {
         return i - 1
     }
