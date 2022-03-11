@@ -17,10 +17,12 @@ kotlin {
     }
 
     val bignum_version = "0.3.4"
+    val ktor_version = "1.6.7"
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation("com.ionspin.kotlin:bignum:$bignum_version")
+                implementation("io.ktor:ktor-client-core:$ktor_version")
             }
         }
         val commonTest by getting {
@@ -31,6 +33,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api("com.ionspin.kotlin:bignum:$bignum_version")
+                implementation("io.ktor:ktor-client-android:$ktor_version")
             }
         }
         val androidTest by getting
