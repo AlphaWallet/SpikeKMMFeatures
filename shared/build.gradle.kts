@@ -16,14 +16,23 @@ kotlin {
         }
     }
 
+    val bignum_version = "0.3.4"
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("com.ionspin.kotlin:bignum:$bignum_version")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                api("com.ionspin.kotlin:bignum:$bignum_version")
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
