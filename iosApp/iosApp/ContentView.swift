@@ -4,7 +4,7 @@ import shared
 struct ContentView: View {
 	let greet = Greeting().greeting()
     let sum = KFetcher().addOne(i: BignumBigInteger.init(long: INT64_MAX))
-
+    
     @State private var ip: String?
     var body: some View {
         Text(greet + "\nINT64_MAX + 1 = " + sum.toString(base: 10))
@@ -18,6 +18,14 @@ struct ContentView: View {
                     return 456
                 }
             })
+        Text("1 - 1 = " + SFoo().decrement(i: BignumBigInteger.init(int: 1)).toString(base: 10))
+    }
+}
+
+class SFoo: KFoo
+{
+    func decrement(i: BignumBigInteger) -> BignumBigInteger {
+        return i.dec()
     }
 }
 
