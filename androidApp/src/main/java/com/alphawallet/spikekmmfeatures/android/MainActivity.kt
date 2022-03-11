@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.alphawallet.spikekmmfeatures.Greeting
 import com.alphawallet.spikekmmfeatures.KFetcher
-import com.alphawallet.spikekmmfeatures.KURLAndString
+import com.alphawallet.spikekmmfeatures.KFoo
 import com.ionspin.kotlin.bignum.integer.BigInteger
 
 fun greet(): String {
@@ -24,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         tv.text = String.format("%s\n%s", greet(), add())
 
         fetch()
+        decrement()
+    }
+
+    private fun decrement() {
+        val result = KFetcher().decrement(BigInteger.ONE, AFoo())
+        appendText(String.format("1 - 1 = %s", result.toString()))
     }
 
     private fun fetch() {
@@ -31,10 +37,14 @@ class MainActivity : AppCompatActivity() {
             Log.d("kmm", "Received (urlAndString)")
             Log.d("kmm", "Received (${it.url})")
             Log.d("kmm", "Received (${it.string})")
-            runOnUiThread{
-                tv.text = String.format("%s\n%s", tv.text, it.string)
-            }
+            appendText(it.string)
             return@fetch 456
+        }
+    }
+
+    private fun appendText(args: String) {
+        runOnUiThread {
+            tv.text = String.format("%s\n%s", tv.text, args)
         }
     }
 
@@ -43,5 +53,11 @@ class MainActivity : AppCompatActivity() {
         val i = BigInteger.fromLong(Long.MAX_VALUE)
         val sum = fetcher.addOne(i)
         return String.format("Long.MAX_VALUE + 1 = %s", sum.toString())
+    }
+}
+
+class AFoo : KFoo {
+    override fun decrement(i: BigInteger): BigInteger {
+        return i - 1
     }
 }
