@@ -67,12 +67,12 @@ class MainActivity : AppCompatActivity() {
             data = data.getJSONObject("data")
 
             try {
-                val metadata = data.getJSONObject("metadata")
+                //val metadata = data.getJSONObject("metadata")
 
                 runOnUiThread {
-                    dataText.setText(metadata.toString())
+                    dataText.setText(data.toString())
 
-                    DownloadImageTask(dataImage).execute(metadata.getString("image"));
+                    DownloadImageTask(dataImage).execute(data.getString("image"));
                 }
 
             } catch (e:Throwable){
