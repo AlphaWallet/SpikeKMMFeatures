@@ -23,8 +23,6 @@ kotlin {
             dependencies {
                 implementation("com.ionspin.kotlin:bignum:$bignum_version")
                 implementation("io.ktor:ktor-client-core:$ktor_version")
-                implementation("io.vertx:vertx-mqtt:4.2.6")
-                implementation("io.vertx:vertx-lang-kotlin:4.2.6")
             }
         }
         val commonTest by getting {
@@ -36,6 +34,8 @@ kotlin {
             dependencies {
                 api("com.ionspin.kotlin:bignum:$bignum_version")
                 implementation("io.ktor:ktor-client-android:$ktor_version")
+                implementation("io.vertx:vertx-mqtt:4.2.6")
+                implementation("io.vertx:vertx-lang-kotlin:4.2.6")
             }
         }
         val androidTest by getting

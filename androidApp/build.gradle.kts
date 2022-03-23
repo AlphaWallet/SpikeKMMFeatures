@@ -17,6 +17,9 @@ android {
             isMinifyEnabled = false
         }
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
