@@ -1,8 +1,5 @@
 package com.alphawallet.spikekmmfeatures.android
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -12,10 +9,9 @@ import com.alphawallet.spikekmmfeatures.Greeting
 import com.alphawallet.spikekmmfeatures.KFetcher
 import com.alphawallet.spikekmmfeatures.KFoo
 import com.alphawallet.spikekmmfeatures.MQTTClient
+import com.bumptech.glide.Glide
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import org.json.JSONObject
-import java.io.InputStream
-import java.net.URL
 
 
 fun greet(): String {
@@ -72,7 +68,9 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     dataText.setText(data.toString())
 
-                    DownloadImageTask(dataImage).execute(data.getString("image"));
+                    Glide.with(this)
+                        .load(data.getString("image"))
+                        .into(dataImage);
                 }
 
             } catch (e:Throwable){
@@ -115,26 +113,5 @@ class MainActivity : AppCompatActivity() {
 class AFoo : KFoo() {
     override fun decrement(i: BigInteger): BigInteger {
         return i - 1
-    }
-}
-
-internal class DownloadImageTask(var bmImage: ImageView) :
-    AsyncTask<String?, Void?, Bitmap?>() {
-
-    protected override fun doInBackground(vararg urls: String?): Bitmap? {
-        val urldisplay = urls[0]
-        var mIcon11: Bitmap? = null
-        try {
-            val input: InputStream = URL(urldisplay).openStream()
-            mIcon11 = BitmapFactory.decodeStream(input)
-        } catch (e: Exception) {
-            Log.e("Error", e.message!!)
-            e.printStackTrace()
-        }
-        return mIcon11
-    }
-
-    protected override fun onPostExecute(result: Bitmap?) {
-        bmImage.setImageBitmap(result)
     }
 }
